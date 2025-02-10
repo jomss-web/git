@@ -1,23 +1,30 @@
 #var
-Scope: Function-scoped; accessible throughout the function where declared.
-Reassignment: Can be reassigned and redeclared within its scope.
-Hoisting: Variables declared with var are hoisted to the top of their scope and initialized with undefined.
-Best Practices: Generally discouraged due to potential scoping issues and unintended behavior.
+function varExample() {
+    if (true) {
+        var x = 10; // 'var' is function-scoped
+    }
+    console.log(x); // Outputs: 10
+}
+varExample();
 
 #let
-Scope: Block-scoped; confined to the block ({}) where declared.
-Reassignment: Can be reassigned but cannot be redeclared within the same scope.
-Hoisting: Variables declared with let are hoisted but not initialized, leading to a ReferenceError if accessed before declaration.
-Best Practices: Use let when the variable's value needs to change.
+function letExample() {
+    if (true) {
+        let y = 20; // 'let' is block-scoped
+        console.log(y); // Outputs: 20
+    }
+    console.log(y); // ReferenceError: y is not defined
+}
+letExample();
+
 
 #const
-Scope: Block-scoped, similar to let.
-Reassignment: Cannot be reassigned or redeclared after initial assignment.
-Hoisting: Variables declared with const are hoisted but not initialized, resulting in a ReferenceError if accessed before declaration.
-Best Practices: Use const for variables that should remain constant after assignment.
+function constExample() {
+    const z = 30; // 'const' is block-scoped and must be initialized
+    console.log(z); // Outputs: 30
 
-References:
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
-MDN Web Docs on var
-MDN Web Docs on let
-MDN Web Docs on const
+    // z = 40; // TypeError: Assignment to constant variable
+
+    // const z = 50; // SyntaxError: Identifier 'z' has already been declared
+}
+constExample();
